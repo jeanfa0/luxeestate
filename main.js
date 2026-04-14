@@ -231,6 +231,49 @@ async function handleSubmit() {
 }
 
 /* ══════════════════════════════════════════════════════════
+   Theme Toggle (dark / light + system default)
+══════════════════════════════════════════════════════════ */
+const sunIcon = `<path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><circle cx="12" cy="12" r="5"/>`;
+const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+
+function getSystemPreference() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  const icon = document.getElementById('themeIcon');
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.body.classList.remove('light-mode');
+    if (icon) icon.innerHTML = sunIcon;
+  } else {
+    document.body.classList.add('light-mode');
+    document.body.classList.remove('dark-mode');
+    if (icon) icon.innerHTML = moonIcon;
+  }
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.contains('dark-mode');
+  const next = isDark ? 'light' : 'dark';
+  localStorage.setItem('luxe-theme', next);
+  applyTheme(next);
+}
+
+// Init: saved preference → system preference
+(function initTheme() {
+  const saved = localStorage.getItem('luxe-theme');
+  applyTheme(saved || getSystemPreference());
+})();
+
+// Listen for system changes (if user has no manual preference saved)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!localStorage.getItem('luxe-theme')) {
+    applyTheme(e.matches ? 'dark' : 'light');
+  }
+});
+
+/* ══════════════════════════════════════════════════════════
    Init Lucide Icons
 ══════════════════════════════════════════════════════════ */
 lucide.createIcons();

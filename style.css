@@ -301,8 +301,9 @@ section { padding: 7rem 5%; }
 }
 .card-img {
   height: 220px;
-  background-size: cover; background-position: center;
-  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; /* Solo por seguridad */
 }
 .card-tag {
   position: absolute; top: 1rem; left: 1rem;
@@ -591,4 +592,32 @@ footer {
   .cards-grid .card,
   .benefit-item,
   .testi-card { flex: 0 1 100%; max-width: 100%; }
+}
+
+/* ─── Dark Mode Overrides ────────────────────────────────── */
+
+/* Esto detecta si el usuario tiene el modo oscuro en Windows/Android/iOS */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cream: #050b10;  /* Fondo casi negro pero con tono azulado */
+    --white: #0d1f2d;  /* El navy original ahora es el fondo de las cards */
+    --navy:  #f7f4ef;  /* El texto ahora es crema */
+    --gray:  #b0b0b0;  /* Gris un poco más claro para lectura */
+    --gray-lt: #1a3a2a; /* Bordes sutiles en color esmeralda */
+    --shadow: 0 8px 40px rgba(0,0,0,.4);
+  }
+
+  /* Ajustes específicos para que se vea premium */
+  .card, .benefit-item, .form-card {
+    background: #0d1f2d;
+    border: 1px solid rgba(201,168,76, 0.15);
+  }
+  
+  .section-sub, .card-loc, .card-specs {
+    color: rgba(247, 244, 239, 0.7); /* Crema con opacidad */
+  }
+
+  header {
+    background: rgba(5, 11, 16, 0.95);
+  }
 }

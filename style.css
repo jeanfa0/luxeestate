@@ -599,51 +599,167 @@ footer {
 .theme-toggle {
   position: fixed; bottom: 6rem; right: 2rem; z-index: 800;
   width: 46px; height: 46px;
-  background: var(--navy);
+  background: #0d1f2d;
   border: 1.5px solid rgba(201,168,76,.35);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
-  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  transition: transform .3s, box-shadow .3s;
   box-shadow: 0 4px 16px rgba(0,0,0,.25);
-  color: var(--gold);
+  color: #c9a84c;
 }
-.theme-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 24px rgba(0,0,0,.35);
-}
+.theme-toggle:hover { transform: scale(1.1); }
 .theme-toggle svg { width: 18px; height: 18px; pointer-events: none; }
 
-/* ── Manual dark mode class (overrides prefers-color-scheme) */
+/* ══════════════════════════════════════════════════════════
+   DARK MODE — class-based (manual toggle)
+══════════════════════════════════════════════════════════ */
 body.dark-mode {
-  --cream: #050b10;
-  --white: #0d1f2d;
-  --navy:  #f7f4ef;
-  --gray:  #b0b0b0;
-  --gray-lt: #1a3a2a;
-  --shadow: 0 8px 40px rgba(0,0,0,.4);
-}
-body.dark-mode .card,
-body.dark-mode .benefit-item,
-body.dark-mode .form-card {
-  background: #0d1f2d;
-  border: 1px solid rgba(201,168,76,.15);
-}
-body.dark-mode .section-sub,
-body.dark-mode .card-loc,
-body.dark-mode .card-specs {
-  color: rgba(247,244,239,.7);
-}
-body.dark-mode header {
-  background: rgba(5,11,16,.95);
+  --cream:   #080f16;
+  --white:   #0d1f2d;
+  --navy:    #f7f4ef;
+  --gray:    #b0b0b0;
+  --gray-lt: #1a2e20;
+  --shadow:  0 8px 40px rgba(0,0,0,.5);
 }
 
-/* ── Force light mode class */
-body.light-mode {
-  --cream: #f7f4ef;
-  --white: #ffffff;
-  --navy:  #0d1f2d;
-  --gray:  #8a8a8a;
-  --gray-lt: #efefef;
-  --shadow: 0 8px 40px rgba(13,31,45,.12);
+/* Header */
+body.dark-mode header {
+  background: rgba(5,11,16,.97);
+  border-bottom: 1px solid rgba(201,168,76,.2);
+}
+
+/* Hero — overlay más oscuro */
+body.dark-mode .hero-bg::after {
+  background: linear-gradient(135deg, rgba(5,11,16,.92) 0%, rgba(13,31,45,.75) 100%);
+}
+
+/* Trust strip */
+body.dark-mode .trust-strip {
+  background: #050b10;
+}
+
+/* Properties section */
+body.dark-mode .properties {
+  background: #080f16;
+}
+body.dark-mode .card {
+  background: #0d1f2d;
+  border: 1px solid rgba(201,168,76,.15);
+  box-shadow: 0 8px 40px rgba(0,0,0,.4);
+}
+body.dark-mode .card-title { color: #f7f4ef; }
+body.dark-mode .card-price { color: #f7f4ef; }
+body.dark-mode .card-loc   { color: #b0b0b0; }
+body.dark-mode .card-specs { color: #b0b0b0; border-top-color: rgba(255,255,255,.08); }
+
+/* Benefits section */
+body.dark-mode .benefits {
+  background: #050b10;
+}
+body.dark-mode .benefit-item {
+  background: #0d1f2d;
+  border: 1px solid rgba(201,168,76,.12);
+}
+body.dark-mode .benefit-title { color: #f7f4ef; }
+body.dark-mode .benefit-desc  { color: #b0b0b0; }
+
+/* Testimonials — ya es oscuro, ajuste sutil */
+body.dark-mode .testimonials {
+  background: #030810;
+}
+
+/* Contact section */
+body.dark-mode .contact {
+  background: #080f16;
+}
+body.dark-mode .contact-info h2 { color: #f7f4ef; }
+body.dark-mode .contact-info p  { color: #b0b0b0; }
+body.dark-mode .contact-detail  { color: #f7f4ef; }
+body.dark-mode .form-card {
+  background: #0d1f2d;
+  box-shadow: 0 8px 40px rgba(0,0,0,.4);
+}
+body.dark-mode .form-title { color: #f7f4ef; }
+body.dark-mode .form-sub   { color: #b0b0b0; }
+body.dark-mode .field label { color: #f7f4ef; }
+body.dark-mode .field input,
+body.dark-mode .field select {
+  background: #080f16;
+  border-color: rgba(201,168,76,.2);
+  color: #f7f4ef;
+}
+body.dark-mode .field input::placeholder { color: #5a5a5a; }
+body.dark-mode .field input:focus,
+body.dark-mode .field select:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+}
+body.dark-mode .select-wrap::after { border-top-color: #b0b0b0; }
+body.dark-mode .btn-submit {
+  background: #c9a84c;
+  color: #0d1f2d;
+}
+body.dark-mode .btn-submit:hover { background: #e2c47a; }
+body.dark-mode .form-success h3 { color: #f7f4ef; }
+body.dark-mode .form-success p  { color: #b0b0b0; }
+
+/* Section headers en dark */
+body.dark-mode .section-title { color: #f7f4ef; }
+body.dark-mode .section-sub   { color: #b0b0b0; }
+
+/* Footer */
+body.dark-mode footer {
+  background: #030810;
+  border-top-color: rgba(201,168,76,.1);
+}
+
+/* Mobile menu */
+body.dark-mode .mobile-menu {
+  background: #050b10;
+}
+
+/* Theme toggle — versión light para que contraste */
+body.dark-mode .theme-toggle {
+  background: #f7f4ef;
+  border-color: rgba(13,31,45,.3);
+  color: #0d1f2d;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DARK MODE — sistema operativo (si no hay preferencia manual)
+══════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) {
+    --cream:   #080f16;
+    --white:   #0d1f2d;
+    --navy:    #f7f4ef;
+    --gray:    #b0b0b0;
+    --gray-lt: #1a2e20;
+    --shadow:  0 8px 40px rgba(0,0,0,.5);
+  }
+  body:not(.light-mode):not(.dark-mode) header { background: rgba(5,11,16,.97); }
+  body:not(.light-mode):not(.dark-mode) .properties { background: #080f16; }
+  body:not(.light-mode):not(.dark-mode) .card { background: #0d1f2d; border: 1px solid rgba(201,168,76,.15); }
+  body:not(.light-mode):not(.dark-mode) .card-title,
+  body:not(.light-mode):not(.dark-mode) .card-price { color: #f7f4ef; }
+  body:not(.light-mode):not(.dark-mode) .card-loc,
+  body:not(.light-mode):not(.dark-mode) .card-specs { color: #b0b0b0; }
+  body:not(.light-mode):not(.dark-mode) .benefits { background: #050b10; }
+  body:not(.light-mode):not(.dark-mode) .benefit-item { background: #0d1f2d; border: 1px solid rgba(201,168,76,.12); }
+  body:not(.light-mode):not(.dark-mode) .benefit-title { color: #f7f4ef; }
+  body:not(.light-mode):not(.dark-mode) .benefit-desc  { color: #b0b0b0; }
+  body:not(.light-mode):not(.dark-mode) .contact { background: #080f16; }
+  body:not(.light-mode):not(.dark-mode) .form-card { background: #0d1f2d; }
+  body:not(.light-mode):not(.dark-mode) .form-title,
+  body:not(.light-mode):not(.dark-mode) .field label,
+  body:not(.light-mode):not(.dark-mode) .contact-info h2 { color: #f7f4ef; }
+  body:not(.light-mode):not(.dark-mode) .field input,
+  body:not(.light-mode):not(.dark-mode) .field select { background: #080f16; border-color: rgba(201,168,76,.2); color: #f7f4ef; }
+  body:not(.light-mode):not(.dark-mode) .section-title { color: #f7f4ef; }
+  body:not(.light-mode):not(.dark-mode) .section-sub,
+  body:not(.light-mode):not(.dark-mode) .form-sub,
+  body:not(.light-mode):not(.dark-mode) .contact-info p { color: #b0b0b0; }
+  body:not(.light-mode):not(.dark-mode) .btn-submit { background: #c9a84c; color: #0d1f2d; }
+  body:not(.light-mode):not(.dark-mode) footer { background: #030810; }
 }

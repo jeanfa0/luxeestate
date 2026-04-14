@@ -593,31 +593,57 @@ footer {
   .benefit-item,
   .testi-card { flex: 0 1 100%; max-width: 100%; }
 }
+/* ══════════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+══════════════════════════════════════════════════════════ */
+.theme-toggle {
+  position: fixed; bottom: 6rem; right: 2rem; z-index: 800;
+  width: 46px; height: 46px;
+  background: var(--navy);
+  border: 1.5px solid rgba(201,168,76,.35);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  color: var(--gold);
+}
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0,0,0,.35);
+}
+.theme-toggle svg { width: 18px; height: 18px; pointer-events: none; }
 
-/* ─── Dark Mode Overrides ────────────────────────────────── */
+/* ── Manual dark mode class (overrides prefers-color-scheme) */
+body.dark-mode {
+  --cream: #050b10;
+  --white: #0d1f2d;
+  --navy:  #f7f4ef;
+  --gray:  #b0b0b0;
+  --gray-lt: #1a3a2a;
+  --shadow: 0 8px 40px rgba(0,0,0,.4);
+}
+body.dark-mode .card,
+body.dark-mode .benefit-item,
+body.dark-mode .form-card {
+  background: #0d1f2d;
+  border: 1px solid rgba(201,168,76,.15);
+}
+body.dark-mode .section-sub,
+body.dark-mode .card-loc,
+body.dark-mode .card-specs {
+  color: rgba(247,244,239,.7);
+}
+body.dark-mode header {
+  background: rgba(5,11,16,.95);
+}
 
-/* Esto detecta si el usuario tiene el modo oscuro en Windows/Android/iOS */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cream: #050b10;  /* Fondo casi negro pero con tono azulado */
-    --white: #0d1f2d;  /* El navy original ahora es el fondo de las cards */
-    --navy:  #f7f4ef;  /* El texto ahora es crema */
-    --gray:  #b0b0b0;  /* Gris un poco más claro para lectura */
-    --gray-lt: #1a3a2a; /* Bordes sutiles en color esmeralda */
-    --shadow: 0 8px 40px rgba(0,0,0,.4);
-  }
-
-  /* Ajustes específicos para que se vea premium */
-  .card, .benefit-item, .form-card {
-    background: #0d1f2d;
-    border: 1px solid rgba(201,168,76, 0.15);
-  }
-  
-  .section-sub, .card-loc, .card-specs {
-    color: rgba(247, 244, 239, 0.7); /* Crema con opacidad */
-  }
-
-  header {
-    background: rgba(5, 11, 16, 0.95);
-  }
+/* ── Force light mode class */
+body.light-mode {
+  --cream: #f7f4ef;
+  --white: #ffffff;
+  --navy:  #0d1f2d;
+  --gray:  #8a8a8a;
+  --gray-lt: #efefef;
+  --shadow: 0 8px 40px rgba(13,31,45,.12);
 }

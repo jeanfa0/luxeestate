@@ -39,8 +39,8 @@
   --radius-sm:    8px;
 
   /* Tipografía */
-  --font-display: 'Cormorant Garamond', serif;
-  --font-body:    'Montserrat', sans-serif;
+--font-display: 'Playfair Display', serif;
+--font-body: 'Jost', sans-serif;
   --transition:   .3s cubic-bezier(.4,0,.2,1);
 }
 
